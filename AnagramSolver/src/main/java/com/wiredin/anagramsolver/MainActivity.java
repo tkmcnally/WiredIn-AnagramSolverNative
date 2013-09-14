@@ -9,13 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.wiredin.anagramsolver.db.DataAdapter;
 import com.wiredin.anagramsolver.unscramble.Unscramble;
 import com.wiredin.anagramsolver.util.Dawg;
-import com.wiredin.anagramsolver.util.Unscrambler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends ListActivity implements View.OnClickListener{
@@ -25,7 +22,6 @@ public class MainActivity extends ListActivity implements View.OnClickListener{
     private Button submitButton;
 
     private EditText inputBox;
-    private DataAdapter mDbHelper;
 
     private Unscramble unscramble;
 
@@ -46,16 +42,12 @@ public class MainActivity extends ListActivity implements View.OnClickListener{
         listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, wordList);
         setListAdapter(listAdapter);
 
-        mDbHelper = new DataAdapter(this.getApplicationContext());
-        mDbHelper.createDatabase();
-        mDbHelper.open();
+
         try {
-            dawg = new Dawg(this.getApplicationContext(), listAdapter, wordList);
+            dawg = new Dawg(this, listAdapter, wordList);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        unscramble = new Unscrambler(mDbHelper);
-
     }
 
     @Override
@@ -65,7 +57,6 @@ public class MainActivity extends ListActivity implements View.OnClickListener{
                 if(inputBox != null) {
                     submitEvent(inputBox.getText().toString());
                 }
-               // listAdapter.notifyDataSetChanged();
                 Log.d("MainActivity", "Submit");
                 break;
         }
@@ -75,7 +66,7 @@ public class MainActivity extends ListActivity implements View.OnClickListener{
       // unscramble.findWords(input, wordList, listAdapter);
         try {
             wordList.clear();
-            String output = dawg.anagram(input);
+            dawg.anagram(input);
 
          //   wordList.add(output);
             listAdapter.notifyDataSetChanged();

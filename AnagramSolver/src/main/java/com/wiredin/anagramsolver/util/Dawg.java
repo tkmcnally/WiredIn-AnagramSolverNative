@@ -3,11 +3,8 @@ package com.wiredin.anagramsolver.util;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
-import com.wiredin.anagramsolver.db.DataAdapter;
-
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -167,7 +164,7 @@ public class Dawg {
     }
 
     // The "toScrambleUp" String may contain '?' wildcards, so indicate these wildcards as lower case letters.
-    public String anagram(String toScrambleUp) {
+    public void anagram(String toScrambleUp) {
         String upperString = toScrambleUp.toUpperCase();
         int numberOfLetters = upperString.length();
         char[] inputCharArray = new char[INPUT_SIZE_LIMIT];
@@ -202,7 +199,6 @@ public class Dawg {
             previousChar = currentChar;
         }
         traversalResult = "Anagramming this:  |" + upperString + "|\nResults in |" + forTheCount[0] + "| words.\n" + traversalResult;
-        return traversalResult;
     }
 
     private void removeCharFromArray(char[] thisArray, int thisPosition, int size) {
