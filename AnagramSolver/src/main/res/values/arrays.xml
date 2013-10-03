@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dictionaryChoices">
+        <item name="Scrabble">Scrabble</item>
+        <item name="Webster">Webster</item>
+    </string-array>
+    <string-array name="dictionaryChoicesValues">
+        <item name="Scrabble">1</item>
+        <item name="Webster">2</item>
+    </string-array>
+</resources>

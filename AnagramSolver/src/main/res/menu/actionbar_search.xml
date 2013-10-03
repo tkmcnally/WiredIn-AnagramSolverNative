@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:showAsAction="always"
+        android:queryHint="Search Here"
+        android:actionViewClass="android.widget.SearchView" />
+    <item android:id="@+id/menu_settings"
+        android:title="Settings"
+        android:orderInCategory="1"
+        android:showAsAction="never" />
+    <item android:id="@+id/menu_feedback"
+        android:title="Feedback"
+        android:orderInCategory="2"
+        android:showAsAction="never"  />1
+
+
+</menu>

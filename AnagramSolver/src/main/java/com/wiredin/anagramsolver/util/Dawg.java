@@ -1,13 +1,14 @@
 package com.wiredin.anagramsolver.util;
 
 import android.content.Context;
-import android.widget.ArrayAdapter;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 public class Dawg {
@@ -20,16 +21,14 @@ public class Dawg {
     private static final int INPUT_SIZE_LIMIT = 100;
     private static final char LOWER_IT = 32;
 
-    private ArrayAdapter dataAdapter;
     private List<String> wordList;
+    private HashMap<Integer, List<String>> wordMap = new HashMap<Integer, List<String>>();
 
     private int numberOfNodes;
 
     private int[] theDawgArray;
 
-    public Dawg(Context context, ArrayAdapter adapter, List<String> list) throws Exception {
-
-        this.dataAdapter = adapter;
+    public Dawg(Context context, List<String> list) throws Exception {
         this.wordList = list;
         //DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(getClass().getResourceAsStream("Traditional_Dawg_For_Word-List.dat")));
         DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("Traditional_Dawg_For_Word-List.dat")));
@@ -58,65 +57,6 @@ public class Dawg {
     }
     private int nodeChild(int index) {
         return ((theDawgArray[index]&CHILD_INDEX_BIT_MASK)>>>CHILD_BIT_SHIFT);
-    }
-
-    private String searchForPatternRecurse(String emptyPattern, int position, int thisIndex, char[] thePattern, int[] tally) {
-        int currentIndex = thisIndex;
-        String addThisMessage = "";
-        String returnHolder;
-        char currentChar = emptyPattern.charAt(position);
-        while ( currentIndex != 0 ) {
-            if ( currentChar == '?') {
-                thePattern[position] = nodeLetter(currentIndex);
-                thePattern[position] += LOWER_IT;
-                if ( (position == (emptyPattern.length() - 1)) ) {
-                    if ( nodeEndOfWord(currentIndex) ) {
-                        tally[0] += 1;
-                        addThisMessage += "|" + tally[0] + "| - " + new String(thePattern, 0, position + 1) + "\n";
-                    }
-                }
-                else {
-                    returnHolder = searchForPatternRecurse(emptyPattern, position + 1, nodeChild(currentIndex), thePattern, tally);
-                    addThisMessage += returnHolder;
-                }
-                currentIndex = nodeNext(currentIndex);
-            }
-            else if ( currentChar > nodeLetter(currentIndex) ) {
-                currentIndex = nodeNext(currentIndex);
-            }
-            else if ( currentChar < nodeLetter(currentIndex) ) {
-                break;
-            }
-            else if ( (position == (emptyPattern.length() - 1)) ) {
-                if ( nodeEndOfWord(currentIndex) ) {
-                    thePattern[position] = nodeLetter(currentIndex);
-                    tally[0] += 1;
-                    addThisMessage = "|" + tally[0] + "| - " + new String(thePattern, 0, position + 1) + "\n";
-                    return addThisMessage;
-                }
-                break;
-            }
-            else {
-                thePattern[position] = nodeLetter(currentIndex);
-                addThisMessage = searchForPatternRecurse(emptyPattern, position + 1, nodeChild(currentIndex), thePattern, tally);
-                return addThisMessage;
-            }
-        }
-        return addThisMessage;
-    }
-
-    public String searchForPattern(String thisPattern) {
-        int[] counter = new int[1];
-        String holder = "";
-        String upperString = thisPattern.toUpperCase();
-        String traversalResult = new String("Pattern:  |" + upperString + "| - ");
-        char[] runningPattern = new char[upperString.length()];
-        counter[0] = 0;
-        if ( upperString.charAt(0) != '?' ) holder += searchForPatternRecurse(upperString, 0, (upperString.charAt(0) - '@'), runningPattern, counter);
-        else holder += searchForPatternRecurse(upperString, 0, 1, runningPattern, counter);
-        traversalResult += counter[0] + " Words fit:\n\n";
-        traversalResult += holder;
-        return traversalResult;
     }
 
     // This method is the core program component.  It requires that "unusedChars" be in alphabetical order because the traditional "Dawg" is a list based structure.
@@ -164,7 +104,8 @@ public class Dawg {
     }
 
     // The "toScrambleUp" String may contain '?' wildcards, so indicate these wildcards as lower case letters.
-    public void anagram(String toScrambleUp) {
+    public HashMap<Integer, List<String>> anagram(String toScrambleUp) {
+        wordMap.clear();
         String upperString = toScrambleUp.toUpperCase();
         int numberOfLetters = upperString.length();
         char[] inputCharArray = new char[INPUT_SIZE_LIMIT];
@@ -199,6 +140,8 @@ public class Dawg {
             previousChar = currentChar;
         }
         traversalResult = "Anagramming this:  |" + upperString + "|\nResults in |" + forTheCount[0] + "| words.\n" + traversalResult;
+
+        return wordMap;
     }
 
     private void removeCharFromArray(char[] thisArray, int thisPosition, int size) {
@@ -211,19 +154,12 @@ public class Dawg {
     }
 
     public void addAndUpdate(String word) {
-        wordList.add(word);
-        Collections.sort(wordList, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                if (o1.length() > o2.length()) {
-                    return 1;
-                } else if (o1.length() < o2.length()) {
-                    return -1;
-                }
-                return o1.compareTo(o2);
-            }
-        });
-
-        dataAdapter.notifyDataSetChanged();
+        if(wordMap.containsKey(word.length())) {
+            wordMap.get(word.length()).add(word);
+        } else {
+            wordMap.put(word.length(), new ArrayList<String>());
+            wordMap.get(word.length()).add(word);
+        }
+      //  wordList.add(word);
     }
 }

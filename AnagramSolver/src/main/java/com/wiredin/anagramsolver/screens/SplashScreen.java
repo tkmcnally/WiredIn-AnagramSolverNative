@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.wiredin.anagramsolver.MainActivity;
+import com.wiredin.anagramsolver.screens.MainScreen;
 import com.wiredin.anagramsolver.R;
 
 /**
@@ -24,7 +24,7 @@ public class SplashScreen extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent main_activity = new Intent(SplashScreen.this, MainActivity.class);
+                Intent main_activity = new Intent(SplashScreen.this, MainScreen.class);
                 startActivity(main_activity);
 
                 finish();

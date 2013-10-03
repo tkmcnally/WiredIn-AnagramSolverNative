@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="pref_dictionary"
+        android:title="Dictionary"
+        android:summary="Choose the preferred Dictionary"
+        android:defaultValue="true" />
+    <ListPreference
+        android:dependency="pref_dictionary"
+        android:key="pref_dictionaryChosen"
+        android:title="dictionaryChoice"
+        android:dialogTitle="Dictionary Selection"
+        android:entries="@array/dictionaryChoices"
+        android:entryValues="@array/dictionaryChoicesValues"
+        android:defaultValue="Webster" />
+
+</PreferenceScreen>

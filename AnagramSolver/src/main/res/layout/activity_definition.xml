@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/definition_textView"
+            android:layout_gravity="center"
+            android:maxLines="1000"
+            android:textAlignment="center"
+            android:textSize="15dp" />
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout"
+        android:layout_gravity="bottom"
+        android:baselineAligned="false"
+        android:measureWithLargestChild="false"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.google.ads.AdView android:id="@+id/adView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            ads:adUnitId="ca-app-pub-9081322137461264/4444200032"
+            ads:adSize="BANNER"
+            ads:testDevices="TEST_EMULATOR, TEST_DEVICE_ID"
+            ads:loadAdOnCreate="true" />
+    </LinearLayout>
+</LinearLayout>
