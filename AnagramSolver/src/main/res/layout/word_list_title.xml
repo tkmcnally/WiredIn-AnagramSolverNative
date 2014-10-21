@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:id="@+id/word_title_layout">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/word_title_container"
+        android:background="@color/colorPrimary">
+    <TextView
+        android:id="@+id/word_list_title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:textSize="56sp"
+        android:fontFamily="sans-serif"
+        android:paddingTop="8dp"/>
+
+    <TextView
+        android:id="@+id/word_list_title_sub_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif" />
+
+    <TextView
+        android:id="@+id/word_list_title_sub_text_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif" />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/word_title_container"
+        android:layout_marginTop="-28dp">
+
+        <ImageButton
+            android:id="@+id/sortingModeButton"
+            android:layout_alignParentLeft="true"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
+            android:layout_gravity="bottom|right"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/fab_ripple"
+            android:stateListAnimator="@anim/fab_anim"
+            android:src="@drawable/ic_action_sort_by_size"
+            />
+        <!--
+        <ImageButton
+            android:id="@+id/sortingModeButton"
+            android:layout_alignParentRight="true"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/fab_ripple"
+            android:stateListAnimator="@anim/fab_anim"
+            android:src="@drawable/ic_action_add"/>
+
+
+        <Spinner
+            android:id="@+id/sorting_mode_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />-->
+</RelativeLayout>
+
+
+
+</RelativeLayout>

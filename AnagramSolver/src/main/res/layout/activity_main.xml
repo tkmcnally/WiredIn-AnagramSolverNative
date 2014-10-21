@@ -17,7 +17,8 @@
         android:fastScrollEnabled="false"
         android:layout_alignParentBottom="false"
         android:stackFromBottom="false"
-        android:layout_above="@+id/linearLayout" />
+        android:layout_above="@+id/linearLayout"
+        android:textAlignment="center" />
 
 
     <LinearLayout

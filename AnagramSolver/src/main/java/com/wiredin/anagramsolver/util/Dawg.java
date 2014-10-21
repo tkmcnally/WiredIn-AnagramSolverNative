@@ -2,6 +2,8 @@ package com.wiredin.anagramsolver.util;
 
 import android.content.Context;
 
+import com.wiredin.anagramsolver.models.WordItem;
+
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.util.ArrayList;
@@ -22,14 +24,14 @@ public class Dawg {
     private static final char LOWER_IT = 32;
 
     private List<String> wordList;
-    private HashMap<Integer, List<String>> wordMap = new HashMap<Integer, List<String>>();
+    private HashMap<Integer, List<WordItem>> wordMap = new HashMap<Integer, List<WordItem>>();
 
     private int numberOfNodes;
 
     private int[] theDawgArray;
 
-    public Dawg(Context context, List<String> list) throws Exception {
-        this.wordList = list;
+    public Dawg(Context context) throws Exception {
+
         //DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(getClass().getResourceAsStream("Traditional_Dawg_For_Word-List.dat")));
         DataInputStream dawgDataFile = new DataInputStream(new BufferedInputStream(context.getAssets().open("Traditional_Dawg_For_Word-List.dat")));
         numberOfNodes = endianConversion(dawgDataFile.readInt());
@@ -104,7 +106,7 @@ public class Dawg {
     }
 
     // The "toScrambleUp" String may contain '?' wildcards, so indicate these wildcards as lower case letters.
-    public HashMap<Integer, List<String>> anagram(String toScrambleUp) {
+    public HashMap<Integer, List<WordItem>> anagram(String toScrambleUp) {
         wordMap.clear();
         String upperString = toScrambleUp.toUpperCase();
         int numberOfLetters = upperString.length();
@@ -155,10 +157,11 @@ public class Dawg {
 
     public void addAndUpdate(String word) {
         if(wordMap.containsKey(word.length())) {
-            wordMap.get(word.length()).add(word);
+           // wordMap.get(word.length()).add(new WordItem(2, word));
+            wordMap.get(word.length()).add(new WordItem(1, word));
         } else {
-            wordMap.put(word.length(), new ArrayList<String>());
-            wordMap.get(word.length()).add(word);
+            wordMap.put(word.length(), new ArrayList<WordItem>());
+            wordMap.get(word.length()).add(new WordItem(1, word));
         }
       //  wordList.add(word);
     }

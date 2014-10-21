@@ -5,33 +5,18 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/anagram"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"> >
-
-        <!-- SplashScreen Activity
+        android:theme="@style/NewTheme">
         <activity
-            android:name="com.wiredin.anagramsolver.screens.SplashScreen"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-         </activity>-->
-
-
-        <!-- Main Activity -->
-        <activity
-            android:name="com.wiredin.anagramsolver.screens.MainScreen"
-            android:label="WordFinder">
+            android:name="com.wiredin.anagramsolver.ui.WordListActivity"
+            android:label="Anagram Solver"
+            android:icon="@drawable/anagram">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,13 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.wiredin.anagramsolver.screens.SettingsActivity"
+            android:name="com.wiredin.anagramsolver.ui.SettingsActivity"
             android:label="Settings">
 
         </activity>
 
         <activity
-            android:name="com.wiredin.anagramsolver.screens.DefinitionScreen"
+            android:name=".ui.DefinitionActivity"
             android:label="Definition">
 
         </activity>
@@ -53,7 +38,8 @@
         <activity android:name="com.google.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 
-    </application>
+        </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
 </manifest>

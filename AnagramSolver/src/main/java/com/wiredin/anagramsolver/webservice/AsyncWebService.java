@@ -1,10 +1,10 @@
 package com.wiredin.anagramsolver.webservice;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
-import com.wiredin.anagramsolver.screens.DefinitionScreen;
-import com.wiredin.anagramsolver.screens.MainScreen;
+import com.wiredin.anagramsolver.ui.DefinitionActivity;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -12,20 +12,19 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import java.util.List;
-
 /**
  * Created by Thomas on 9/25/13.
- */
+*/
 public class AsyncWebService extends AsyncTask<String, Void, String> {
 
-    private DefinitionScreen activity;
+    private DefinitionActivity activity;
     private ProgressDialog progDailog;
 
-    public AsyncWebService(DefinitionScreen activity) {
+    public AsyncWebService(DefinitionActivity activity) {
         this.activity = activity;
     }
 
+    @SuppressLint("Override")
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -46,7 +45,7 @@ public class AsyncWebService extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        activity.setDefinitionText(result);
+        //activity.setDefinitionText(result);
         progDailog.dismiss();
     }
 

@@ -1,20 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
+    <style name="NewTheme" parent="NewTheme.Base"/>
+
+    <!-- the theme applied to the application or activity -->
+    <style name="NewTheme.Base"
+        parent="Theme.AppCompat">
+        <!-- Main theme colors -->
+        <!--   your app's branding color (for the app bar) -->
+        <item name="android:colorPrimary">@color/primary</item>
+        <!--   darker variant of colorPrimary (for status bar, contextual app bars) -->
+        <item name="android:colorPrimaryDark">@color/primary_dark</item>
+        <item name="android:icon">@drawable/anagram</item>
+        <item name="android:displayOptions">showHome|showTitle</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/recyclerview_definition_transition
+        </item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/recyclerview_definition_transition
+        </item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryLight</item>
+
+
+        <item name="windowActionBar">false</item>
+
+        <item name="searchViewStyle">@style/AnagramSearchView</item>
+        <item name="android:windowBackground">@color/colorPrimaryLight</item>
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
 
+    <style name="AnagramSearchView" parent="Widget.AppCompat.SearchView"/>
 </resources>

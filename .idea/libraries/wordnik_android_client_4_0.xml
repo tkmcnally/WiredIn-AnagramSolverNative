@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="wordnik-android-client-4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wordnik/wordnik-android-client/4.0/8234ce6af92c04cf65ba0390ee492e3a8741d956/wordnik-android-client-4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wordnik/wordnik-android-client/4.0/2fa77b9f48d71d79b9850193284a8e42e41c2e23/wordnik-android-client-4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
